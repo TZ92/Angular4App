@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="panel panel-primary"></div>
+  <div class="panel-heading">About</div>
+  <div class="panel-body">
+
+    <div>
+      <h3><i>Hello i'am Alaa Laaribi 25 years old i'am a computer sciences engineer !</i></h3>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>{{info.name}}</strong></li>
+        <li class="list-group-item"><strong>{{info.email}}</strong></li>
+        <li class="list-group-item"><strong>{{info.tel}}</strong></li>
+      </ul>  
+    </div>
+
+    <div>
+      
+      <div>
+        <br/>
+        <h4>First way to create a form</h4>
+        <div class="form-group">
+          <label class="control-label"> Message</label>
+          <input type="text"  [(ngModel)]="comment.message"/>
+          <button [disabled]="!comment.message" class="btn btn-primary" (click)="onAddComment()">Add comment</button>
+        </div>
+      </div>
+    
+      <h3>Comments</h3>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let c of comments">
+          <span>{{c.message}}</span>
+          <span class="badge">{{c.date|date:'dd/MM/yyyy:HH:mm:ss'}}</span>
+        </li>
+      </ul>
+
+      <div>
+          <h4>Second way to create a form</h4>
+          <form #f="ngForm" (ngSubmit)="onAddCommentNEW(f.value)">
+            <div class="form-group">
+                <label class="control-label"> Message</label>
+                <input required="" name="message" ngModel type="text" 
+                [(ngModel)]="comments.message"
+                />
+                <button [disabled]="!f.valid" type="submit" class="btn btn-primary" >Add comment</button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
